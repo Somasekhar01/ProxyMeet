@@ -1,85 +1,79 @@
-# ProxiSpeak — Geospatial Proximity Audio Ecosystem
+# ProxiSpeak — Geospatial Virtual Office Collaboration Platform
 
-A browser-based virtual office with shared office chat, presence, draggable/click-to-move avatars, direct messages, direct audio/video calls, and proximity-based WebRTC audio.
+## 1. Project Overview
 
-## Requirements
-- Node.js 18+ (20+ recommended)
-- npm
-- A modern browser with microphone permissions
+ProxiSpeak is a browser-based virtual office collaboration platform designed to make remote teamwork more interactive. It provides a shared, office-style digital workspace where teammates can connect and communicate.
 
-## Run locally
+The project combines a virtual office interface with communication features such as office chat, personal chat, online presence, and notifications. Its goal is to make remote collaboration feel more connected by bringing teammates together in one shared online workspace.
 
-Terminal 1 — backend:
-```bash
-cd backend
-npm install
-cp .env.example .env
-npm run dev
+## 2. Problem Statement
+
+Remote teams often rely on separate tools for messaging and collaboration. This can make everyday interaction feel disconnected and less like working together in a shared environment.
+
+ProxiSpeak explores a virtual office approach that brings team members and communication features into one online workspace.
+
+## 3. Project Objectives
+
+- Create a shared virtual office environment for remote teams.
+- Support team-wide and direct communication.
+- Represent teammate presence in the workspace.
+- Provide notifications for relevant communication activity.
+- Integrate the frontend and backend into one application.
+- Explore a more interactive approach to remote collaboration.
+
+## 4. Key Features
+
+- **Virtual Office Interface:** An office-style scene that serves as the shared digital workspace.
+- **Office Chat:** A space for team-wide communication.
+- **Personal Chat:** Direct messaging between users.
+- **Online Presence and People Discovery:** Features for viewing or finding teammates in the workspace.
+- **Notifications:** In-app notifications for messages and relevant activity.
+- **Proximity-Oriented Collaboration:** A virtual-office concept focused on interaction between nearby teammates.
+- **Camera and Screen Sharing:** Media collaboration capabilities where supported by the current application build. 
+
+## 5. Technology Stack
+
+| Component | Technologies |
+|---|---|
+| Frontend | React, Vite, JavaScript, CSS |
+| Backend | Node.js, Express |
+| Real-time Communication | Socket.IO |
+| Data Storage | SQLite, where configured |
+
+## 6. Project Structure
+
+```text
+ProxiSpeak/
+├── README.md
+├── frontend/
+│   ├── public/
+│   └── src/
+└── backend/
+    └── src/
 ```
 
-Terminal 2 — frontend:
-```bash
-cd frontend
-npm install
-npm run dev
-```
+## 7. Team Members and Responsibilities
 
-Open the Vite URL shown in the terminal (normally `http://localhost:5173`). Open a second browser profile or another device to test multiple users. Both users must enable Proximity Voice and grant microphone permission. Headphones are recommended.
+ProxiSpeak is developed as a five-member team project. The responsibilities are organized as follows:
 
-## Environment
-Backend `backend/.env`:
-```env
-PORT=3000
-FRONTEND_URL=http://localhost:5173
-JWT_SECRET=replace-with-a-long-random-secret
-```
-Frontend can use `frontend/.env` with `VITE_API_URL=http://localhost:3000` if the backend is hosted elsewhere.
+| Team Member | Responsibility |
+|---|---|
+| **Team Lead — Satyasri** | Project coordination, integration, code review, and deployment |
+| **Raktima** | Frontend functionality |
+| **Somasekhar** | Backend development and real-time communication |
+| **Sarthak** | UI design and styling |
+| **Harika** | Testing and documentation |
 
-## Current implementation notes
-- Accounts and chat history are persisted in a local SQLite database at `backend/data/proxispeak.sqlite` by default.
-- MongoDB is **not** the active persistence engine in this build. Do not describe MongoDB as implemented until a MongoDB URI is configured and account/message persistence is migrated and tested.
-- The Help page includes a local FAQ assistant for common app questions. It does not call a generative AI model or external AI API.
-- Proximity audio uses WebRTC peer-to-peer connections and a STUN server. Some networks require a TURN server; add credentials through environment configuration before production deployment.
-- Use HTTPS in deployed environments for microphone/camera access. Configure a production JWT secret, strict CORS origins, authentication/authorization for signaling, rate limits, and appropriate data retention before public deployment.
-- Room signaling is scoped to the socket's office room. The current UI uses the default `office-general` room; a full multi-room selector is not included.
+## 8. Project Outcome
 
-## Testing checklist
-1. Open two browser profiles and sign in as different guest names.
-2. Confirm each appears in People and on the office map.
-3. Enable Proximity Voice on both; test with headphones.
-4. Move avatars within/outside the hearing radius and check fade behavior.
-5. Toggle mic off/on, mute incoming audio, and test direct audio/video calls.
-6. Inspect browser DevTools Console and Network if WebRTC remains in `connecting` or `failed` state.
-7. Test on separate devices/networks before deployment.
+ProxiSpeak brings the virtual-office concept into a browser-based application by combining a shared workspace interface with communication and presence features. The project explores how a virtual office can make remote teamwork more interactive and connected.
 
-## Build frontend
-```bash
-cd frontend
-npm install
-npm run build
-```
+## 9. GitHub Repository
 
-## Update notes (October 2026)
+[ProxiSpeak — GitHub Repository](https://github.com/satyakarumuri/ProxiSpeak)
 
-This update adds:
-- Office-only home canvas; chat panels no longer appear on the home page.
-- Chat menu with Office Chat and Personal Chat entry points.
-- Camera and screen-share publishing to online teammates using a separate WebRTC media mesh from proximity voice.
-- Camera/screen previews beside the teammate's office avatar, plus media connection status text.
-- Backend-persisted profile photos (PNG/JPEG/WEBP/GIF, max 1 MB) and profile editing.
-- Profile name updates and live camera/share status broadcast.
+---
 
-### Run locally
-1. Open a terminal in `backend` and run `npm install`, then `npm start`.
-2. Open another terminal in `frontend` and run `npm install`, then `npm run dev`.
-3. Keep `VITE_API_URL=http://localhost:3000` for local use, or set it to your deployed backend URL.
-4. Camera/microphone/screen capture require localhost or HTTPS. Test with two browsers/laptops. Some networks require a TURN server; this build currently configures Google STUN only.
-5. Profile photos are stored in SQLite under `backend/data`. Back up this directory; for hosting, attach persistent storage or migrate profile storage to a persistent managed service.
-
-Note: WebRTC media delivery is network-dependent and should be tested with two real clients before production deployment. Do not use the development JWT fallback in production; set a unique strong `JWT_SECRET` and set `FRONTEND_URL` to the deployed frontend origin.
-
-
-### Recent updates
-- Incoming office and personal messages trigger in-app notifications; browser notifications can be enabled from the notification bell (grant permission when prompted).
-- Chat history is no longer truncated to the latest 100 messages in the application query/state.
-- Navigation bars use a light theme to match the workspace.
+**Project Name:** ProxiSpeak  
+**Project Type:** Web-Based Collaboration Platform  
+**Purpose:** To explore a shared virtual office experience for remote teamwork.
